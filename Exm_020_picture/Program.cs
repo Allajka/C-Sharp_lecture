@@ -53,5 +53,5 @@ void FillImage(int row, int col) //row строка,  col пиксель
 }
 
 PrintImage(pic);
-FillImage(13,13); // случайная точка
+FillImage(13, 13); // случайная точка
 PrintImage(pic);
