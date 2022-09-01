@@ -1,33 +1,41 @@
 ﻿/* Перебор слов
 В некотором машинном алфавите имеются четыре буквы «а», «и», «с» и «в». Покажите все слова, состоящие из T букв, 
 которые можно построить из букв этого алфавита */
-
-// char[] letters = { 'a', 'и', 'с', 'в' };
-// int serialNumber = 1;
-// for (int i = 0; i < letters.Length; i++)
-// {
-//     for (int j = 0; j < letters.Length; j++)
-//     {
-//         Console.WriteLine($"{serialNumber++,-5} {letters[i]}{letters[j]}");
-//     }
-// }
-
-// int t = 5;
-
-// for (int i = 0; i < Math.Pow(letters.Length, t); i++)
-// {
-//     Console.WriteLine($"{serialNumber++,-5} {letters[i]}{letters[i]}");
-// }
-
-int[] playerNumbers = { 0, 1, 2, 3, 4 };
-int allTeams = 2;
-
-for (int i = 0; i < Math.Pow(playerNumbers.Length, allTeams); i++)
+int n = 1;
+void PrintWordsFromLettersRecursion(string alphabet, char[] word, int length = 0) // передаем строкой алфавит, новое слово в массив char, если размер и размер массива совпало, показываем слово
 {
-    int binarySystem = 0;
-    if (i == 0) binarySystem = 00000;
-    Console.WriteLine("{0,-2} {1}", i, string.Format("{0:f5}", binarySystem));
+    if (length == word.Length)
+    {
+        Console.WriteLine($"{n++} {new String(word)}");
+        return;
+    }
+    for (int i = 0; i < alphabet.Length; i++)
+    {
+        word[length] = alphabet[i];
+        PrintWordsFromLettersRecursion(alphabet, word, length + 1);
+    }
 }
+
+void PrintWordsFromLetters(char[] arr)
+{
+    int counterNumber = 1;
+    for (int i = 0; i < arr.Length; i++)
+    {
+        for (int j = 0; j < arr.Length; j++)
+        {
+            for (int k = 0; k < arr.Length; k++)
+            {
+                Console.WriteLine($"{counterNumber++,-5} {arr[i]}{arr[j]}{arr[k]}");
+            }
+        }
+    }
+}
+
+char[] letters = { 'a', 'и', 'с', 'в' };
+string alphabet = "аисв";
+// PrintWordsFromLetters(letters);
+PrintWordsFromLettersRecursion(alphabet: alphabet, word: new char[5]);
+
 
 
 
